@@ -242,6 +242,96 @@ body{min-height:100vh}
 /* scrollbar */
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--line);border-radius:2px}
 canvas{display:block}
+
+/* ── MOBILE HEADER ── */
+.mobile-header{display:none;align-items:center;justify-content:space-between;padding:14px 18px;background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:200}
+.mh-left{display:flex;align-items:center;gap:10px}
+.mh-mark{width:26px;height:26px;background:var(--ink);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mh-name{font-size:13px;font-weight:600;color:var(--ink)}
+.mh-sub{font-size:10px;color:var(--ink3);font-family:var(--mono)}
+.hamburger{width:36px;height:36px;border:1px solid var(--line);border-radius:var(--r);background:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;flex-shrink:0}
+.hamburger span{display:block;width:16px;height:1.5px;background:var(--ink);border-radius:1px;transition:all .2s}
+
+/* ── DRAWER ── */
+.drawer-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:300;backdrop-filter:blur(2px)}
+.drawer-overlay.open{display:block}
+.drawer{position:fixed;top:0;left:0;bottom:0;width:290px;background:var(--white);z-index:400;transform:translateX(-100%);transition:transform .25s cubic-bezier(.4,0,.2,1);overflow-y:auto;box-shadow:4px 0 32px rgba(0,0,0,.14)}
+.drawer.open{transform:translateX(0)}
+.drawer-close{position:absolute;top:14px;right:14px;width:30px;height:30px;border:1px solid var(--line);border-radius:var(--r);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink3);font-size:16px;line-height:1}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--line);z-index:200;padding:8px 0 calc(8px + env(safe-area-inset-bottom))}
+.bnav-inner{display:flex;justify-content:space-around;align-items:flex-start}
+.bn-item{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 8px;border-radius:var(--r);border:none;background:none;cursor:pointer;font-family:var(--sans);min-width:52px;transition:background .12s}
+.bn-dot{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto}
+.bn-lbl{font-size:9px;font-weight:500;color:var(--ink3);font-family:var(--mono);text-align:center;line-height:1.3;max-width:56px}
+.bn-item.active .bn-lbl{color:var(--ink)}
+.bn-item.active .bn-dot{background:var(--ink)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .sidebar{width:200px}
+  .krow{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .risk-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .roadmap{grid-template-columns:1fr}
+  .token-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .maturity-hero{flex-direction:column;gap:20px;padding:22px}
+  .maturity-divider{display:none}
+  .maturity-num{font-size:56px}
+}
+@media(max-width:768px){
+  .shell{flex-direction:column}
+  .sidebar{display:none}
+  .mobile-header{display:flex}
+  .bottom-nav{display:block}
+  .main{padding-bottom:72px}
+  .content{padding:16px}
+  .topbar{padding:14px 16px;gap:8px}
+  .tb-title{font-size:16px}
+  .tb-sub{font-size:10px}
+  .badge{font-size:11px;padding:5px 10px}
+  .krow{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .kpi{padding:12px 14px}
+  .kv{font-size:22px}
+  .g2,.g2e,.g3,.g4{grid-template-columns:1fr}
+  .risk-grid{grid-template-columns:1fr 1fr}
+  .roadmap{grid-template-columns:1fr}
+  .token-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .maturity-hero{flex-direction:column;padding:16px;gap:16px}
+  .maturity-divider{display:none}
+  .maturity-num{font-size:52px}
+  .maturity-headline{font-size:14px}
+  .maturity-desc{font-size:12px}
+  .maturity-phases{gap:6px}
+  .phase-pill{font-size:10px;padding:4px 10px}
+  .debt-card{padding:12px 14px}
+  .debt-num{font-size:24px}
+  .card{padding:14px 16px}
+  .ofc{flex-wrap:wrap;gap:10px;padding:12px 14px}
+  .ofc-kpis{gap:12px}
+  .ofc-kv{font-size:15px}
+  .sn{width:110px;font-size:11px}
+  .cw{height:160px}
+  .cwt{height:180px}
+  .cws{height:200px}
+  .dwrap{height:140px}
+  .tbl{font-size:11px}
+  .tbl th,.tbl td{padding:7px 5px}
+  .ofc-arr{display:none}
+  div[style*="grid-template-columns:minmax(0,1.5fr)"]{grid-template-columns:1fr!important}
+  div[style*="grid-template-columns:minmax(0,1.35fr)"]{grid-template-columns:1fr!important}
+  div[style*="grid-template-columns:repeat(2,minmax"]{grid-template-columns:1fr!important}
+  .dep-map .ct~div{overflow-x:auto}
+  .sec{margin:16px 0 8px}
+}
+@media(max-width:480px){
+  .krow{grid-template-columns:1fr 1fr}
+  .risk-grid{grid-template-columns:1fr}
+  .token-grid{grid-template-columns:1fr}
+  .ofc-kpis{display:none}
+  .maturity-phases{flex-direction:column}
+}
 </style>
 </head>
 <body>
@@ -282,6 +372,89 @@ canvas{display:block}
 </aside>
 
 <!-- MAIN -->
+
+<!-- MOBILE HEADER -->
+<header class="mobile-header" id="mobile-header">
+  <div class="mh-left">
+    <div class="mh-mark">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+        <rect x="2" y="2" width="5" height="5" rx="1.5" fill="white"/>
+        <rect x="9" y="2" width="5" height="5" rx="1.5" fill="white" opacity=".55"/>
+        <rect x="2" y="9" width="5" height="5" rx="1.5" fill="white" opacity=".55"/>
+        <rect x="9" y="9" width="5" height="5" rx="1.5" fill="white" opacity=".25"/>
+      </svg>
+    </div>
+    <div>
+      <div class="mh-name">Figma Audit</div>
+      <div class="mh-sub">Gauge × KÉNOS DS</div>
+    </div>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleDrawer()">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- DRAWER OVERLAY -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+
+<!-- DRAWER -->
+<div class="drawer" id="drawer">
+  <button class="drawer-close" onclick="closeDrawer()">×</button>
+  <div class="sb-brand" style="padding-right:48px">
+    <div class="sb-mark">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <rect x="2" y="2" width="5" height="5" rx="1.5" fill="white"/>
+        <rect x="9" y="2" width="5" height="5" rx="1.5" fill="white" opacity=".55"/>
+        <rect x="2" y="9" width="5" height="5" rx="1.5" fill="white" opacity=".55"/>
+        <rect x="9" y="9" width="5" height="5" rx="1.5" fill="white" opacity=".25"/>
+      </svg>
+    </div>
+    <div class="sb-name">Figma Audit</div>
+    <div class="sb-sub">Gauge × KÉNOS DS</div>
+  </div>
+  <div class="sb-section">
+    <div class="sb-lbl">Visão executiva</div>
+    <button class="nb" onclick="goMobile('exec')">
+      <span class="nd" style="background:var(--bm)"></span>
+      <span class="nl">Overview executivo</span>
+    </button>
+    <button class="nb" onclick="goMobile('tech')">
+      <span class="nd" style="background:var(--pm)"></span>
+      <span class="nl">Visão técnica</span>
+    </button>
+  </div>
+  <div class="sb-section">
+    <div class="sb-lbl">Por arquivo</div>
+    <div id="drawer-file-nav"></div>
+  </div>
+  <div class="sb-foot">
+    <p>Metodologia uniforme via Claude + Figma MCP em todos os 7 arquivos · Abril 2026</p>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <div class="bnav-inner" id="bottom-nav-inner">
+    <button class="bn-item active" onclick="go('exec')" data-view="exec">
+      <div class="bn-dot" style="background:var(--ink)">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="1" y="1" width="3.5" height="3.5" rx=".8" fill="white"/><rect x="5.5" y="1" width="3.5" height="3.5" rx=".8" fill="white" opacity=".5"/><rect x="1" y="5.5" width="3.5" height="3.5" rx=".8" fill="white" opacity=".5"/><rect x="5.5" y="5.5" width="3.5" height="3.5" rx=".8" fill="white" opacity=".25"/></svg>
+      </div>
+      <span class="bn-lbl">Executivo</span>
+    </button>
+    <button class="bn-item" onclick="go('tech')" data-view="tech">
+      <div class="bn-dot" style="background:var(--line2)">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="3.5" stroke="var(--ink3)" stroke-width="1"/><path d="M3 5h4M5 3v4" stroke="var(--ink3)" stroke-width="1" stroke-linecap="round"/></svg>
+      </div>
+      <span class="bn-lbl">Técnico</span>
+    </button>
+    <button class="bn-item" onclick="toggleDrawer()" id="bn-files">
+      <div class="bn-dot" style="background:var(--line2)">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><rect x="1" y="2" width="8" height="1.2" rx=".6" fill="var(--ink3)"/><rect x="1" y="4.4" width="8" height="1.2" rx=".6" fill="var(--ink3)"/><rect x="1" y="6.8" width="5" height="1.2" rx=".6" fill="var(--ink3)"/></svg>
+      </div>
+      <span class="bn-lbl">Arquivos</span>
+    </button>
+  </div>
+</nav>
 <main class="main" id="main"></main>
 </div>
 
@@ -903,6 +1076,42 @@ function buildPrios(f){
   if(!p.length)p.push({text:'Manter padrão e documentar boas práticas para referência do time',level:'med'});
   return p.slice(0,8);
 }
+
+
+// ── MOBILE NAV ──
+function toggleDrawer(){
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('drawer-overlay').classList.toggle('open');
+}
+function closeDrawer(){
+  document.getElementById('drawer').classList.remove('open');
+  document.getElementById('drawer-overlay').classList.remove('open');
+}
+function goMobile(id){ closeDrawer(); go(id); }
+
+function renderDrawerNav(){
+  const nav = document.getElementById('drawer-file-nav');
+  if(!nav) return;
+  nav.innerHTML = FILES.map(f=>`
+    <button class="nb ${view===f.id?'active':''}" onclick="goMobile('${f.id}')">
+      <span class="nd" style="background:${sc(f.health)}"></span>
+      <span class="nl">${f.name}</span>
+      <span class="ns">${f.health}</span>
+    </button>`).join('');
+  // update bottom nav active state
+  document.querySelectorAll('.bn-item[data-view]').forEach(el=>{
+    el.classList.toggle('active', el.dataset.view === view);
+    const dot = el.querySelector('.bn-dot');
+    if(dot) dot.style.background = el.dataset.view===view?'var(--ink)':'var(--line2)';
+  });
+}
+
+// Override renderNav to also update mobile nav
+const _origRenderNav = renderNav;
+renderNav = function(){
+  _origRenderNav();
+  renderDrawerNav();
+};
 
 // ── INIT ──
 renderNav();
